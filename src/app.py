@@ -48,9 +48,9 @@ def interface():
                      "Finally, an important enzyme is needed, which is called Taq polymerase. "
                      "This enzyme attaches the correct building blocks A, C, G or T one by one to the new strand until the entire piece of template DNA has been copied.")
             path = os.path.dirname(__file__)
-            dna_file = path+'/dna.png'
+            dna_file = path+'/dna.jpg'
             image = Image.open(dna_file)
-            
+
             st.image(image, caption='Caption')
     with tab2:
         col1_2, _2, col2_2 = st.columns([10, 1, 10])
