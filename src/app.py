@@ -13,7 +13,7 @@ def interface():
     )
     st.title("Escaperoom")
 
-    tab1, tab2 = st.tabs(["Information", "Insert sequence"])
+    tab1, tab2 = st.tabs(["Informatie", "Sequentie invoeren"])
 
     with tab1:
         col1_1, _1, col2_1 = st.columns([10, 1, 10])
@@ -51,32 +51,34 @@ def interface():
             dna_file = path+'/dna.jpg'
             image = Image.open(dna_file)
 
-            st.image(image, caption='Caption')
+            st.image(image)
     with tab2:
         col1_2, _2, col2_2 = st.columns([10, 1, 10])
         # Input layout
         with col1_2:
             st.subheader("Microbial database")
-            st.write("The microbial database holds lots of DNA sequences. Each sequence can be translated to microorganism. "
-                     "The found primer will attach to the complementary strand which is in the database and will give you the microorganism!")
+            st.write("De microbial database bevat veel DNA sequences. Elke sequentie kan worden vertaald naar een micro-organisme. "
+                     "Met de gevonden primer vind je het DNA dat past bij een micro-organisme!")
             with st.form(key='query_form'):
                 raw_code = st.text_input(max_chars=18, label="Complementary primer sequence")
                 submit_code = st.form_submit_button("Execute")
 
             # Results Layouts
         with col2_2:
-            st.subheader("Password result")
-            st.write("With this result you can go to the next assignment.")
+            st.subheader("Password resultaat")
+            st.write("Met dit resultaat kun je naar de volgende opdracht.")
             st.text("")
             st.text("")
             if submit_code:
                 if not raw_code.isupper():
-                    st.info('This is not how a base pair is written :)')
+                    st.info('Dit is niet hoe je een Nucleotide schrijft :)')
                 else:
-                    if raw_code == "TAGC":
+                    if raw_code == "ACGGGGATTCTTGGAGAG":
                         st.success('Success! The code is: Bacillus')
+                    if raw_code == "TGCCCCTAAGAACCTCTC":
+                        st.warning('Oeps, je bent er bijna :)')
                     else:
-                        st.warning('Oeps, that is not the right sequence, please try again!')
+                        st.warning('Oeps, dit is niet de goede sequentie, probeer het opnieuw!')
 
 
 interface()
