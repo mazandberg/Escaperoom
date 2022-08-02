@@ -11,7 +11,7 @@ def interface():
         layout="wide",
         initial_sidebar_state="expanded"
     )
-    st.title("Escaperoom")
+    st.title("Digitaal lab")
 
     tab1, tab2 = st.tabs(["Informatie", "Sequentie invoeren"])
 
@@ -20,38 +20,39 @@ def interface():
         with col1_1:
 
             st.subheader("PCR")
-            st.write("PCR is a technique for copying short pieces of DNA many times. "
-                     "With all those copies you can study the genetic material of (micro)organisms. "
-                     "Researchers often use PCR to identify microbes: Crime Scene Investigation at the micro level. "
-                     "All living organisms have genetic material: DNA. Microbes, such as bacteria, are very small and therefore have only a small amount of DNA. "
-                     "A lot of information is hidden in that small amount of DNA. Just like humans, microbes have genes, which together form the instructions for all processes in a cell. "
-                     "In order to study and decipher DNA, we need a certain amount of it. This is where PCR comes in. "
-                     "Using a chain reaction on a molecular scale (PCR stands for Polymerase Chain Reaction), a certain piece of DNA is copied very often. "
-                     "With this, a researcher makes so many copies of that piece of DNA that he or she can carry out analysis with it.")
-            st.subheader("DNA crash course")
-            st.write("The double helix shape of DNA is well known to many people: it looks like a kind of twisted rope ladder. "
-                     "But let's take a closer look at the structure of DNA. DNA consists of two strands, say the left and the right side of the ladder. "
-                     "A single strand of DNA, say the left one, is made up of building blocks (nucleotides). "
-                     "There is a choice of four types of building blocks: Adenine (A), Cytosine (C), Guanine (G) and Thymine (T). "
-                     "Each of these nucleotides forms a new rung on the half ladder. Then we have the right strand of DNA. "
-                     "It's exactly opposite to the left. An Adenine fits well to Thymine, and a Cytosine to a Guanine. "
-                     "You will always find a T on the right where there is an A on the left, and a G on the right where there is a C on the left. "
-                     "The double helix therefore consists of two strands containing complementary information: "
-                     "if you know what the left strand looks like, you also know what the right strand will look like.")
+            st.write("PCR is een techniek om korte stukken DNA heel vaak te kopiëren. Met al die kopieën kun je het genetisch materiaal van (micro)-organismen bestuderen. "
+                     "Onderzoekers gebruiken PCR vaak om microben te identificeren: een soort Crime Scene Investigation op microniveau. "
+                     "Alle levende organismen hebben genetisch materiaal: DNA. Microben, zoals bacteriën, zijn heel klein en hebben daardoor maar een kleine hoeveelheid DNA. "
+                     "In die kleine hoeveelheid zit een hoop informatie verstopt. "
+                     "Net als mensen hebben microben ook genen, die samen de instructies vormen voor alle processen in een cel. "
+                     "Om het DNA te kunnen bestuderen en ontcijferen hebben we er een bepaalde hoeveelheid van nodig. "
+                     "Hier komt PCR om de hoek kijken. Met behulp van een kettingreactie op moleculaire schaal (PCR staat voluit voor Polymerase Chain Reaction) wordt een bepaald stukje DNA heel vaak gekopieerd. "
+                     "Hiermee maakt een onderzoeker zo veel kopieën van dat stukje DNA dat hij of zij er analyses mee kan uitvoeren. ")
+            st.subheader("Snelcursus DNA")
+            st.write("De dubbele helixvorm van DNA is bij veel mensen wel bekend: het ziet er uit als een soort gedraaide touwladder. "
+                     "Maar laten we eens wat verder inzoomen op de structuur van DNA. "
+                     "DNA bestaat uit twee strengen, zeg maar de linker- en de rechterkant van de ladder. "
+                     "Een enkele DNA-streng, zegge de linker, is opgebouwd uit bouwblokken (nucleotiden). "
+                     "Er is keuze uit maar liefst vier soorten bouwblokken: Adenine (A), Cytosine (C), Guanine (G) en Thymine (T). "
+                     "Elk van deze nucleotiden vormt een nieuwe trede op de halve ladder. Dan hebben we de rechter DNA-streng. "
+                     "Die is precies tegenovergesteld aan de linker. Een Adenine past namelijk goed aan Thymine, en een Cytosine aan een Guanine. "
+                     "Zo vind je altijd rechts een T waar links een A zit, en rechts een G waar links een C zit. "
+                     "De dubbele helix bestaat dus uit twee strengen met daarop complementaire informatie: als je weet hoe de linker streng er uit ziet, weet je ook hoe de rechter streng er uit zal zien.")
         with col2_1:
-            st.subheader("What do you need?")
-            st.write("Just like a recipe, you need a few things to run a PCR reaction. "
-                     "First of all, the piece of DNA that needs to be copied: the original. "
-                     "That's called the template. You also need a lot of building blocks (nucleotides) to build the new DNA strand. "
-                     "Additionally, a so-called primer is required. A primer is a small piece of single-stranded DNA that initiates the reaction. "
-                     "By carefully choosing a primer, scientists can copy exactly the piece of DNA they need. "
-                     "Finally, an important enzyme is needed, which is called Taq polymerase. "
-                     "This enzyme attaches the correct building blocks A, C, G or T one by one to the new strand until the entire piece of template DNA has been copied.")
+            st.subheader("Wat heb je nodig?")
+            st.write("Net als bij een recept, heb je een aantal dingen nodig om een PCR reactie uit te voeren. "
+                     "Allereerst het stukje DNA dat gekopieerd moet worden, het origineel. "
+                     "Dat wordt het template genoemd. Verder heb je heel veel bouwblokken (nucleotiden) nodig om de nieuwe DNA-streng op te bouwen. "
+                     "Ook is er een zogeheten primer nodig. Een primer is een klein stukje enkelstreng DNA dat een beginnetje maakt aan de reactie. "
+                     "Door zorgvuldig een primer te kiezen, kunnen wetenschappers precies dat stukje DNA kopiëren wat ze nodig hebben. "
+                     "Ten slotte is er een belangrijk enzym nodig, dat Taq-polymerase heet. "
+                     "Dit enzym plakt één voor één de juiste bouwblokken A, C, G of T aan de nieuwe streng totdat het hele stuk template DNA gekopieerd is.")
             path = os.path.dirname(__file__)
             dna_file = path+'/dna.jpg'
             image = Image.open(dna_file)
-
             st.image(image)
+            st.text("")
+            st.text("Bron: Artis Micropia")
     with tab2:
         col1_2, _2, col2_2 = st.columns([10, 1, 10])
         # Input layout
@@ -74,11 +75,19 @@ def interface():
                     st.info('Dit is niet hoe je een Nucleotide schrijft :)')
                 else:
                     if raw_code == "ACGGGGATTCTTGGAGAG":
-                        st.success('Success! The code is: Bacillus')
-                    if raw_code == "TGCCCCTAAGAACCTCTC":
+                        st.success('Hoera! De code is: Bacillus')
+                    elif raw_code == "TGCCCCTAAGAACCTCTC":
                         st.warning('Oeps, je bent er bijna :)')
                     else:
                         st.warning('Oeps, dit is niet de goede sequentie, probeer het opnieuw!')
+
+    hide_streamlit_style = """
+                <style>
+                #MainMenu {visibility: hidden;}
+                footer {visibility: hidden;}
+                </style>
+                """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 
 interface()
