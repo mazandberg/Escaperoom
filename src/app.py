@@ -61,7 +61,7 @@ def interface():
             st.write("De microbial database bevat veel DNA sequences. Elke sequentie kan worden vertaald naar een micro-organisme. "
                      "Met de gevonden primer vind je het DNA dat past bij een micro-organisme!")
             with st.form(key='query_form'):
-                raw_code = st.text_input(max_chars=18, label="Complementary primer sequence")
+                raw_code = st.text_input(max_chars=18, label="Primer sequentie")
                 submit_code = st.form_submit_button("Execute")
 
             # Results Layouts
