@@ -6,7 +6,6 @@ import streamlit as st
 from PIL import Image
 import streamlit.components.v1 as components
 
-global state
 
 def interface():
 
@@ -80,7 +79,7 @@ def interface():
 
             bp = st.selectbox(
                 'Selecteer hier het bodemprofiel',
-                ('bodemprofiel', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'), disabled=state)
+                ('bodemprofiel', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'))
 
             # Results Layouts
         with col2_2:
@@ -139,6 +138,7 @@ def right_answer():
 
 
 def popupanswer():
+
     path = os.path.dirname(__file__)
     location_file = path+'/Docs/Locatie-Afsluitdijk.jpg'
     image = Image.open(location_file)
@@ -152,8 +152,6 @@ def img_to_bytes(img_path):
 
 
 def wrong_answer():
-    global state
-    state = True
     placeholder = st.empty()
     placeholder.warning('Sorry dat is het verkeerde antwoord, je kan pas over 2 minuten weer een antwoord indienen')
     with st.empty():
@@ -161,8 +159,6 @@ def wrong_answer():
             st.write(f"⏳ {seconds}")
             time.sleep(1)
         st.write("✔️ 2 minuten zijn voorbij!")
-        global state
-        state = False
         placeholder.empty()
 
 
