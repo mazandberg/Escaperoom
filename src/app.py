@@ -7,7 +7,6 @@ from PIL import Image
 import streamlit.components.v1 as components
 
 
-
 def interface():
 
     st.set_page_config(
@@ -18,8 +17,7 @@ def interface():
     )
     st.title("Digitaal lab")
 
-    if 'key' not in st.session_state:
-        st.session_state.key = False
+    state = False
 
     tab1, tab2 = st.tabs(["Informatie", "DNA-puzzle"])
 
@@ -78,10 +76,10 @@ def interface():
             st.markdown(
                 header_html, unsafe_allow_html=True,
             )
-            st.write(st.session_state.key)
+
             bp = st.selectbox(
                 'Selecteer hier het bodemprofiel',
-                ('bodemprofiel', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'), disabled=st.session_state.key)
+                ('bodemprofiel', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'), disabled=state)
 
             # Results Layouts
         with col2_2:
@@ -113,7 +111,6 @@ def interface():
 
 
 def right_answer():
-
     placeholder = st.empty()
     with placeholder.container():
         with st.form(key='query_form'):
@@ -141,7 +138,6 @@ def right_answer():
 
 
 def popupanswer():
-
     path = os.path.dirname(__file__)
     location_file = path+'/Docs/Locatie-Afsluitdijk.jpg'
     image = Image.open(location_file)
@@ -155,7 +151,8 @@ def img_to_bytes(img_path):
 
 
 def wrong_answer():
-    st.session_state.key = True
+    global state
+    state = True
     placeholder = st.empty()
     placeholder.warning('Sorry dat is het verkeerde antwoord, je kan pas over 2 minuten weer een antwoord indienen')
     with st.empty():
@@ -163,7 +160,8 @@ def wrong_answer():
             st.write(f"⏳ {seconds}")
             time.sleep(1)
         st.write("✔️ 2 minuten zijn voorbij!")
-        st.session_state.key = False
+        global state
+        state = False
         placeholder.empty()
 
 
