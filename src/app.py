@@ -77,30 +77,9 @@ def interface():
                 header_html, unsafe_allow_html=True,
             )
 
-
-            state = False
-
             bp = st.selectbox(
                 'Selecteer hier het bodemprofiel',
-                ('bodemprofiel', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'),disabled=state)
-
-            if bp == "Bodemmonster A":
-                state = True
-                state = wrong_answer()
-            if bp == "Bodemmonster B":
-                state = True
-                state = wrong_answer()
-            if bp == "Bodemmonster C":
-                right_answer()
-            if bp == "Bodemmonster D":
-                state = True
-                state = wrong_answer()
-            if bp == "Bodemmonster E":
-                state = True
-                state = wrong_answer()
-            if bp == "Bodemmonster F":
-                state = True
-                state = wrong_answer()
+                ('bodemprofiel', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'))
 
             # Results Layouts
         with col2_2:
@@ -108,7 +87,19 @@ def interface():
             st.write(
                 "De microbial database bevat veel DNA sequences. Elke sequentie kan worden vertaald naar een micro-organisme. "
                 " Aan jullie de taak om de stikstof code in te voeren!")
-
+            #if submit_bp:
+            if bp == "Bodemmonster A":
+                wrong_answer()
+            if bp == "Bodemmonster B":
+                wrong_answer()
+            if bp == "Bodemmonster C":
+                right_answer()
+            if bp == "Bodemmonster D":
+                wrong_answer()
+            if bp == "Bodemmonster E":
+                wrong_answer()
+            if bp == "Bodemmonster F":
+                wrong_answer()
 
     hide_streamlit_style = """
                 <style>
@@ -169,7 +160,6 @@ def wrong_answer():
             time.sleep(1)
         st.write("✔️ 2 minuten zijn voorbij!")
         placeholder.empty()
-    return False
 
 
 interface()
