@@ -20,7 +20,7 @@ def interface():
 
     if 'key' not in st.session_state:
         st.session_state.key = False
-
+    print(st.session_state.key)
     tab1, tab2 = st.tabs(["Informatie", "DNA-puzzle"])
 
     with tab1:
