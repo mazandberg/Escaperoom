@@ -20,7 +20,7 @@ def interface():
 
     if 'key' not in st.session_state:
         st.session_state.key = False
-    print(st.session_state.key)
+
     tab1, tab2 = st.tabs(["Informatie", "DNA-puzzle"])
 
     with tab1:
@@ -78,7 +78,7 @@ def interface():
             st.markdown(
                 header_html, unsafe_allow_html=True,
             )
-
+            st.write(st.session_state.key)
             bp = st.selectbox(
                 'Selecteer hier het bodemprofiel',
                 ('bodemprofiel', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'), disabled=st.session_state.key)
@@ -113,7 +113,7 @@ def interface():
 
 
 def right_answer():
-    st.session_state.key = False
+
     placeholder = st.empty()
     with placeholder.container():
         with st.form(key='query_form'):
@@ -163,6 +163,7 @@ def wrong_answer():
             st.write(f"⏳ {seconds}")
             time.sleep(1)
         st.write("✔️ 2 minuten zijn voorbij!")
+        st.session_state.key = False
         placeholder.empty()
 
 
