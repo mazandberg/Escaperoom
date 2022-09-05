@@ -77,7 +77,9 @@ def interface():
                 header_html, unsafe_allow_html=True,
             )
 
-            bp = st.selectbox(
+            state = st.empty()
+
+            bp = state.selectbox(
                 'Selecteer hier het bodemprofiel',
                 ('bodemprofiel', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'))
 
@@ -89,17 +91,17 @@ def interface():
                 " Aan jullie de taak om de stikstof code in te voeren!")
             #if submit_bp:
             if bp == "Bodemmonster A":
-                wrong_answer()
+                wrong_answer(state)
             if bp == "Bodemmonster B":
-                wrong_answer()
+                wrong_answer(state)
             if bp == "Bodemmonster C":
                 right_answer()
             if bp == "Bodemmonster D":
-                wrong_answer()
+                wrong_answer(state)
             if bp == "Bodemmonster E":
-                wrong_answer()
+                wrong_answer(state)
             if bp == "Bodemmonster F":
-                wrong_answer()
+                wrong_answer(state)
 
     hide_streamlit_style = """
                 <style>
@@ -151,7 +153,8 @@ def img_to_bytes(img_path):
     return encoded
 
 
-def wrong_answer():
+def wrong_answer(state):
+    state.empty()
     placeholder = st.empty()
     placeholder.warning('Sorry dat is het verkeerde antwoord, je kan pas over 2 minuten weer een antwoord indienen')
     with st.empty():
