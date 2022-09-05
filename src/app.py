@@ -53,8 +53,7 @@ def interface():
                      "Ten slotte is er een belangrijk enzym nodig, dat Taq-polymerase heet. "
                      "Dit enzym plakt één voor één de juiste bouwblokken A, C, G of T aan de nieuwe streng totdat het hele stuk template DNA gekopieerd is.")
             path = os.path.dirname(__file__)
-            dna_file = path+'/dna.jpg'
-            st.write(dna_file)
+            dna_file = path+'/Docs/dna.jpg'
             image = Image.open(dna_file)
             st.image(image)
             st.text("")
@@ -69,7 +68,7 @@ def interface():
                      "Zorg er voor dat je zeker weet dat je het juiste profiel kiest! "
                      "want bij een fout antwoord gaat de app 5 minuten opslot")
             path = os.path.dirname(__file__)
-            bodemlagen_file = path + "/bodemlagen.jpg"
+            bodemlagen_file = path + "/Docs/bodemlagen.jpg"
             header_html = "<center><img src='data:image/png;base64,{}' class='img-fluid'></center>".format(
                 img_to_bytes(bodemlagen_file)
             )
@@ -138,7 +137,7 @@ def right_answer():
 def popupanswer():
 
     path = os.path.dirname(__file__)
-    location_file = path+'/Locatie-Afsluitdijk.jpg'
+    location_file = path+'/Docs/Locatie-Afsluitdijk.jpg'
     image = Image.open(location_file)
     st.image(image)
 
