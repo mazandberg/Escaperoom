@@ -54,7 +54,7 @@ def interface():
                      "Dit enzym plakt één voor één de juiste bouwblokken A, C, G of T aan de nieuwe streng totdat het hele stuk template DNA gekopieerd is.")
             path = os.path.dirname(__file__)
             dna_file = path+'/dna.jpg'
-            print(dna_file)
+            st.write(dna_file)
             image = Image.open(dna_file)
             st.image(image)
             st.text("")
