@@ -1,6 +1,12 @@
+import base64
 import os
+from pathlib import Path
+import time
 import streamlit as st
 from PIL import Image
+import streamlit_modal as modal
+import streamlit.components.v1 as components
+
 
 
 def interface():
@@ -13,7 +19,7 @@ def interface():
     )
     st.title("Digitaal lab")
 
-    tab1, tab2 = st.tabs(["Informatie", "Sequentie invoeren"])
+    tab1, tab2 = st.tabs(["Informatie", "DNA-puzzle"])
 
     with tab1:
         col1_1, _1, col2_1 = st.columns([10, 1, 10])
@@ -54,32 +60,45 @@ def interface():
             st.text("")
             st.text("Bron: Artis Micropia")
     with tab2:
+
         col1_2, _2, col2_2 = st.columns([10, 1, 10])
         # Input layout
         with col1_2:
-            st.subheader("Microbial database")
-            st.write("De microbial database bevat veel DNA sequences. Elke sequentie kan worden vertaald naar een micro-organisme. "
-                     "Met de gevonden primer vind je het DNA dat past bij een micro-organisme!")
-            with st.form(key='query_form'):
-                raw_code = st.text_input(max_chars=18, label="Primer sequentie")
-                submit_code = st.form_submit_button("Execute")
+            st.subheader("Bodem profiel")
+            st.write("Kies hier het juiste bodem profiel uit. "
+                     "Zorg er voor dat je zeker weet dat je het juiste profiel kiest! "
+                     "want bij een fout antwoord gaat de app 5 minuten opslot")
+
+            header_html = "<center><img src='data:image/png;base64,{}' class='img-fluid'></center>".format(
+                img_to_bytes("../Docs/bodemlagen.jpg")
+            )
+            st.markdown(
+                header_html, unsafe_allow_html=True,
+            )
+
+            bp = st.selectbox(
+                'Selecteer hier het bodemprofiel',
+                ('bodemprofiel', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'))
 
             # Results Layouts
         with col2_2:
-            st.subheader("Password resultaat")
-            st.write("Met dit resultaat kun je naar de volgende opdracht.")
-            st.text("")
-            st.text("")
-            if submit_code:
-                if not raw_code.isupper():
-                    st.info('Dit is niet hoe je een Nucleotide schrijft :)')
-                else:
-                    if raw_code == "ACGGGGATTCTTGGAGAG":
-                        st.success('Hoera! De code is: Bacillus')
-                    elif raw_code == "TGCCCCTAAGAACCTCTC":
-                        st.warning('Oeps, je bent er bijna :)')
-                    else:
-                        st.warning('Oeps, dit is niet de goede sequentie, probeer het opnieuw!')
+            st.subheader("Microbial database")
+            st.write(
+                "De microbial database bevat veel DNA sequences. Elke sequentie kan worden vertaald naar een micro-organisme. "
+                " Aan jullie de taak om de stikstof code in te voeren!")
+            #if submit_bp:
+            if bp == "Bodemmonster A":
+                wrong_answer()
+            if bp == "Bodemmonster B":
+                wrong_answer()
+            if bp == "Bodemmonster C":
+                right_answer()
+            if bp == "Bodemmonster D":
+                wrong_answer()
+            if bp == "Bodemmonster E":
+                wrong_answer()
+            if bp == "Bodemmonster F":
+                wrong_answer()
 
     hide_streamlit_style = """
                 <style>
@@ -88,6 +107,56 @@ def interface():
                 </style>
                 """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+
+def right_answer():
+    placeholder = st.empty()
+    with placeholder.container():
+        with st.form(key='query_form'):
+            HtmlFile = open("../Docs/Escaperoom_krona_def.html", 'r', encoding='utf-8')
+            source_code = HtmlFile.read()
+            components.html(source_code, width=750, height=310)
+            raw_code = st.text_input(max_chars=8, label="Primer sequentie")
+            submit_code = st.form_submit_button("Execute")
+    # st.write("")
+    if submit_code:
+        if not raw_code.isupper():
+            st.info('Dit is niet hoe je een Nucleotide schrijft :)')
+        else:
+            if raw_code == "TGGTACCT":
+                st.success('Hoera! Je hebt de juiste code ingevoerd')
+                placeholder.empty()
+                popupanswer()
+
+            elif raw_code == "ACCATGGA":
+                st.warning('Oeps, je bent er bijna :)')
+            else:
+                st.warning('Oeps, dit is niet de juiste sequentie, probeer het opnieuw!')
+
+
+def popupanswer():
+
+    path = os.path.dirname(__file__)
+    location_file = path+'/Locatie-Afsluitdijk.jpg'
+    image = Image.open(location_file)
+    st.image(image)
+
+
+def img_to_bytes(img_path):
+    img_bytes = Path(img_path).read_bytes()
+    encoded = base64.b64encode(img_bytes).decode()
+    return encoded
+
+
+def wrong_answer():
+    placeholder = st.empty()
+    placeholder.warning('Sorry dat is het verkeerde antwoord, je kan pas over 5 minuten weer een antwoord indienen')
+    with st.empty():
+        for seconds in range(300):
+            st.write(f"⏳ {seconds}")
+            time.sleep(1)
+        st.write("✔️ 5 minuten zijn voorbij!")
+        placeholder.empty()
 
 
 interface()
