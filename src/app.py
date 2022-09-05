@@ -18,6 +18,9 @@ def interface():
     )
     st.title("Digitaal lab")
 
+    if 'key' not in st.session_state:
+        st.session_state.key = False
+
     tab1, tab2 = st.tabs(["Informatie", "DNA-puzzle"])
 
     with tab1:
@@ -78,7 +81,7 @@ def interface():
 
             bp = st.selectbox(
                 'Selecteer hier het bodemprofiel',
-                ('bodemprofiel', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'))
+                ('bodemprofiel', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'), disabled=st.session_state.key)
 
             # Results Layouts
         with col2_2:
@@ -110,6 +113,7 @@ def interface():
 
 
 def right_answer():
+    st.session_state.key = False
     placeholder = st.empty()
     with placeholder.container():
         with st.form(key='query_form'):
@@ -119,7 +123,7 @@ def right_answer():
             source_code = HtmlFile.read()
             components.html(source_code, width=800, height=310)
             raw_code = st.text_input(max_chars=8, label="Primer sequentie")
-            submit_code = st.form_submit_button("Execute")
+            submit_code = st.form_submit_button("Submit")
     # st.write("")
     if submit_code:
         if not raw_code.isupper():
@@ -151,6 +155,7 @@ def img_to_bytes(img_path):
 
 
 def wrong_answer():
+    st.session_state.key = True
     placeholder = st.empty()
     placeholder.warning('Sorry dat is het verkeerde antwoord, je kan pas over 2 minuten weer een antwoord indienen')
     with st.empty():
