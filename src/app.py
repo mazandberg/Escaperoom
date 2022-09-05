@@ -67,9 +67,10 @@ def interface():
             st.write("Kies hier het juiste bodem profiel uit. "
                      "Zorg er voor dat je zeker weet dat je het juiste profiel kiest! "
                      "want bij een fout antwoord gaat de app 5 minuten opslot")
-
+            path = os.path.dirname(__file__)
+            bodemlagen_file = path + '/bodemlagen.jpg'
             header_html = "<center><img src='data:image/png;base64,{}' class='img-fluid'></center>".format(
-                img_to_bytes("../Docs/bodemlagen.jpg")
+                img_to_bytes(bodemlagen_file)
             )
             st.markdown(
                 header_html, unsafe_allow_html=True,
