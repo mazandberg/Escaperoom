@@ -113,7 +113,9 @@ def right_answer():
     placeholder = st.empty()
     with placeholder.container():
         with st.form(key='query_form'):
-            HtmlFile = open("../Docs/Escaperoom_krona_def.html", 'r', encoding='utf-8')
+            path = os.path.dirname(__file__)
+            krona_file = path + '/Docs/Escaperoom_krona_def.html'
+            HtmlFile = open(krona_file, 'r', encoding='utf-8')
             source_code = HtmlFile.read()
             components.html(source_code, width=750, height=310)
             raw_code = st.text_input(max_chars=8, label="Primer sequentie")
