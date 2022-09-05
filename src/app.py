@@ -68,7 +68,7 @@ def interface():
                      "Zorg er voor dat je zeker weet dat je het juiste profiel kiest! "
                      "want bij een fout antwoord gaat de app 5 minuten opslot")
             path = os.path.dirname(__file__)
-            bodemlagen_file = path + '/bodemlagen.jpg'
+            bodemlagen_file = path + "/bodemlagen.jpg"
             header_html = "<center><img src='data:image/png;base64,{}' class='img-fluid'></center>".format(
                 img_to_bytes(bodemlagen_file)
             )
@@ -150,12 +150,12 @@ def img_to_bytes(img_path):
 
 def wrong_answer():
     placeholder = st.empty()
-    placeholder.warning('Sorry dat is het verkeerde antwoord, je kan pas over 5 minuten weer een antwoord indienen')
+    placeholder.warning('Sorry dat is het verkeerde antwoord, je kan pas over 2 minuten weer een antwoord indienen')
     with st.empty():
-        for seconds in range(300):
+        for seconds in range(120):
             st.write(f"⏳ {seconds}")
             time.sleep(1)
-        st.write("✔️ 5 minuten zijn voorbij!")
+        st.write("✔️ 2 minuten zijn voorbij!")
         placeholder.empty()
 
 
