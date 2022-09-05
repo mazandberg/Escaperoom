@@ -67,7 +67,7 @@ def interface():
             st.subheader("Bodem profiel")
             st.write("Kies hier het juiste bodem profiel uit. "
                      "Zorg er voor dat je zeker weet dat je het juiste profiel kiest! "
-                     "want bij een fout antwoord gaat de app 5 minuten opslot")
+                     "want bij een fout antwoord gaat de app 2 minuten opslot")
             path = os.path.dirname(__file__)
             bodemlagen_file = path + "/Docs/bodemlagen.jpg"
             header_html = "<center><img src='data:image/png;base64,{}' class='img-fluid'></center>".format(
