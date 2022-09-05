@@ -4,7 +4,6 @@ from pathlib import Path
 import time
 import streamlit as st
 from PIL import Image
-import streamlit_modal as modal
 import streamlit.components.v1 as components
 
 
