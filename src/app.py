@@ -117,7 +117,7 @@ def right_answer():
             krona_file = path + '/Docs/Escaperoom_krona_def.html'
             HtmlFile = open(krona_file, 'r', encoding='utf-8')
             source_code = HtmlFile.read()
-            components.html(source_code, width=800, height=310)
+            components.html(source_code, width=850, height=310)
             raw_code = st.text_input(max_chars=8, label="Primer sequentie")
             submit_code = st.form_submit_button("Execute")
     # st.write("")
