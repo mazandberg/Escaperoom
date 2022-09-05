@@ -6,6 +6,7 @@ import streamlit as st
 from PIL import Image
 import streamlit.components.v1 as components
 
+state = False
 
 def interface():
 
@@ -16,8 +17,6 @@ def interface():
         initial_sidebar_state="expanded"
     )
     st.title("Digitaal lab")
-
-    state = False
 
     tab1, tab2 = st.tabs(["Informatie", "DNA-puzzle"])
 
