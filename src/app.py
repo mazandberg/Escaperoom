@@ -152,6 +152,7 @@ def wrong_answer():
     hide_btn_style = """
                     <style>
                     [data-baseweb="select"] {visibility: hidden;}
+                    [kind="header"] {visibility: hidden;}
                     </style>
                     """
 
