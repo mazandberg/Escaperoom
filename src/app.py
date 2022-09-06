@@ -136,7 +136,6 @@ def right_answer():
 
 
 def popupanswer():
-
     path = os.path.dirname(__file__)
     location_file = path+'/Docs/Locatie-Afsluitdijk.jpg'
     image = Image.open(location_file)
@@ -150,6 +149,18 @@ def img_to_bytes(img_path):
 
 
 def wrong_answer():
+    hide_btn_style = """
+                    <style>
+                    [data-baseweb="select"] {visibility: hidden;}
+                    </style>
+                    """
+
+    show_streamlit_style = """
+                        <style>
+                        [data-baseweb="select"] {visibility: visible;}
+                        </style>
+                        """
+    st.markdown(hide_btn_style, unsafe_allow_html=True)
     placeholder = st.empty()
     placeholder.warning('Sorry dat is het verkeerde antwoord, je kan pas over 2 minuten weer een antwoord indienen')
     with st.empty():
@@ -158,6 +169,7 @@ def wrong_answer():
             time.sleep(1)
         st.write("✔️ 2 minuten zijn voorbij!")
         placeholder.empty()
+        st.markdown(show_streamlit_style, unsafe_allow_html=True)
 
 
 interface()
