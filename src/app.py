@@ -17,8 +17,6 @@ def interface():
     )
     st.title("Digitaal lab")
 
-    state = False
-
     tab1, tab2 = st.tabs(["Informatie", "DNA-puzzle"])
 
     with tab1:
@@ -33,7 +31,7 @@ def interface():
                      "Net als mensen hebben microben ook genen, die samen de instructies vormen voor alle processen in een cel. "
                      "Om het DNA te kunnen bestuderen en ontcijferen hebben we er een bepaalde hoeveelheid van nodig. "
                      "Hier komt PCR om de hoek kijken. Met behulp van een kettingreactie op moleculaire schaal (PCR staat voluit voor Polymerase Chain Reaction) wordt een bepaald stukje DNA heel vaak gekopieerd. "
-                     "Hiermee maakt een onderzoeker zo veel kopieën van dat stukje DNA dat hij of zij er analyses mee kan uitvoeren. ")
+                     "Hiermee maakt een onderzoeker zo veel kopieën van dat stukje DNA dat hij of zij er analyses mee kan uitvoeren.")
             st.subheader("Snelcursus DNA")
             st.write("De dubbele helixvorm van DNA is bij veel mensen wel bekend: het ziet er uit als een soort gedraaide touwladder. "
                      "Maar laten we eens wat verder inzoomen op de structuur van DNA. "
@@ -64,8 +62,8 @@ def interface():
         col1_2, _2, col2_2 = st.columns([10, 1, 10])
         # Input layout
         with col1_2:
-            st.subheader("Bodem profiel")
-            st.write("Kies hier het juiste bodem profiel uit. "
+            st.subheader("Bodemmonster")
+            st.write("Kies hier het juiste bodemmonster uit. "
                      "Zorg er voor dat je zeker weet dat je het juiste profiel kiest! "
                      "want bij een fout antwoord gaat de app 2 minuten opslot")
             path = os.path.dirname(__file__)
@@ -78,7 +76,7 @@ def interface():
             )
 
             bp = st.selectbox(
-                'Selecteer hier het bodemprofiel',
+                'Selecteer hier het bodemmonster',
                 ('bodemprofiel', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'))
 
             # Results Layouts
@@ -86,7 +84,7 @@ def interface():
             st.subheader("Microbial database")
             st.write(
                 "De microbial database bevat veel DNA sequences. Elke sequentie kan worden vertaald naar een micro-organisme. "
-                " Aan jullie de taak om de stikstof code in te voeren!")
+                " Aan jullie de taak om de DNA code in te voeren waarmee je stikstof gerelateerde bacterien kunt opsporen!")
             #if submit_bp:
             if bp == "Bodemmonster A":
                 wrong_answer()
@@ -121,7 +119,7 @@ def right_answer():
             components.html(source_code, width=800, height=310)
             raw_code = st.text_input(max_chars=8, label="Primer sequentie")
             submit_code = st.form_submit_button("Submit")
-    # st.write("")
+
     if submit_code:
         if not raw_code.isupper():
             st.info('Dit is niet hoe je een Nucleotide schrijft :)')
