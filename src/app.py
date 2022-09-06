@@ -77,7 +77,7 @@ def interface():
 
             bp = st.selectbox(
                 'Selecteer hier het bodemmonster',
-                ('bodemprofiel', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'))
+                ('bodemmonster', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'))
 
             # Results Layouts
         with col2_2:
