@@ -117,7 +117,7 @@ def right_answer():
             HtmlFile = open(krona_file, 'r', encoding='utf-8')
             source_code = HtmlFile.read()
             components.html(source_code, width=800, height=310)
-            raw_code = st.text_input(max_chars=8, label="Primer sequentie")
+            raw_code = st.text_input(max_chars=8, label="Complementaire DNA sequentie")
             submit_code = st.form_submit_button("Submit")
 
     if submit_code:
