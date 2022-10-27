@@ -17,7 +17,7 @@ def interface():
     )
     st.title("Digitaal lab")
 
-    tab1, tab2 = st.tabs(["Informatie", "DNA-puzzle"])
+    tab2, tab1 = st.tabs(["DNA-puzzle", "achtergrondinformatie"])
 
     with tab1:
         col1_1, _1, col2_1 = st.columns([10, 1, 10])
@@ -62,10 +62,10 @@ def interface():
         col1_2, _2, col2_2 = st.columns([10, 1, 10])
         # Input layout
         with col1_2:
-            st.subheader("Bodemmonster")
-            st.write("Kies hier het juiste bodemmonster uit. "
-                     "Zorg er voor dat je zeker weet dat je het juiste profiel kiest! "
-                     "want bij een fout antwoord gaat de app 2 minuten opslot")
+            st.subheader("Opdracht 1: Bodemmonster")
+            st.write("Voer hier het juiste bodemmonster in. "
+                     "Zorg er voor dat je zeker weet dat je het juiste monster kiest! "
+                     "want bij een fout antwoord gaat de app 2 minuten op slot.")
             path = os.path.dirname(__file__)
             bodemlagen_file = path + "/Docs/bodemlagen.jpg"
             header_html = "<center><img src='data:image/png;base64,{}' class='img-fluid'></center>".format(
@@ -76,14 +76,14 @@ def interface():
             )
 
             bp = st.selectbox(
-                'Selecteer hier het bodemmonster',
+                'Selecteer hier het gevraagde bodemmonster',
                 ('bodemmonster', 'Bodemmonster A', 'Bodemmonster B', 'Bodemmonster C', 'Bodemmonster D', 'Bodemmonster E', 'Bodemmonster F'))
 
             # Results Layouts
         with col2_2:
-            st.subheader("Microbial database")
+            st.subheader("Opdracht 2: Microbial database")
             st.write(
-                "De microbial database bevat veel DNA sequences. Elke sequentie kan worden vertaald naar een micro-organisme. "
+                "De microbiele database bevat veel DNA sequences. Elke sequentie geeft een specifiek micro-organisme weer. "
                 " Aan jullie de taak om de DNA code in te voeren waarmee je stikstof gerelateerde bacterien kunt opsporen!")
             #if submit_bp:
             if bp == "Bodemmonster A":
@@ -117,8 +117,8 @@ def right_answer():
             HtmlFile = open(krona_file, 'r', encoding='utf-8')
             source_code = HtmlFile.read()
             components.html(source_code, width=800, height=310)
-            raw_code = st.text_input(max_chars=8, label="Complementaire DNA sequentie")
-            submit_code = st.form_submit_button("Submit")
+            raw_code = st.text_input(max_chars=8, label="DNA sequentie van de primer die je nodig hebt voor stikstof-bacterien")
+            submit_code = st.form_submit_button("Invoeren")
 
     if submit_code:
         if not raw_code.isupper():
