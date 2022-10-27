@@ -17,7 +17,7 @@ def interface():
     )
     st.title("Digitaal lab")
 
-    tab2, tab1 = st.tabs(["DNA-puzzle", "achtergrondinformatie"])
+    tab2, tab1 = st.tabs(["DNA-puzzle", "Achtergrondinformatie"])
 
     with tab1:
         col1_1, _1, col2_1 = st.columns([10, 1, 10])
